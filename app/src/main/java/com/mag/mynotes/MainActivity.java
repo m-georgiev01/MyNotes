@@ -2,8 +2,11 @@ package com.mag.mynotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mag.mynotes.DB.DBActivity;
@@ -25,8 +28,28 @@ public class MainActivity extends DBActivity {
         btnAdd = findViewById(R.id.btnAdd);
 
         btnAdd.setOnClickListener(view -> {
-            Intent i = new Intent(MainActivity.this, InsertActivity.class);
-            startActivity(i);
+            Intent intent = new Intent(MainActivity.this, NoteInsertActivity.class);
+            startActivity(intent);
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                TextView selectedTextId = view.findViewById(R.id.textViewId);
+                TextView selectedTextTitle = view.findViewById(R.id.textViewTitle);
+                TextView selectedTextContent = view.findViewById(R.id.textViewContent);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("Id", selectedTextId.getText().toString());
+                bundle.putString("Title", selectedTextTitle.getText().toString());
+                bundle.putString("Content", selectedTextContent.getText().toString());
+
+                Intent intent = new Intent(MainActivity.this,NoteEditActivity.class);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
+            }
         });
 
         try {
@@ -41,7 +64,22 @@ public class MainActivity extends DBActivity {
         }
     }
 
-        private void FillListView() throws Exception{
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        try {
+            FillListView();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(),
+                    "Error: " + e.getLocalizedMessage(),
+                    Toast.LENGTH_LONG
+            ).show();
+        }
+    }
+
+    private void FillListView() throws Exception{
         final ArrayList<Note> listResult = new ArrayList<>();
 
         selectSQL("SELECT * FROM Notes ORDER BY ID",

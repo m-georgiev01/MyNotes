@@ -3,6 +3,7 @@ package com.mag.mynotes.DB;
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import com.mag.mynotes.Model.Note;
 
 public class DBActivity extends AppCompatActivity {
     protected void execSQL(
-            String SQL,
+            String sql,
             Object[] args,
             OnQuerySuccess success) throws Exception {
 
@@ -22,9 +23,9 @@ public class DBActivity extends AppCompatActivity {
         );
 
         if (args != null) {
-            db.execSQL(SQL, args);
+            db.execSQL(sql, args);
         } else {
-            db.execSQL(SQL);
+            db.execSQL(sql);
         }
 
         db.close();
@@ -73,5 +74,21 @@ public class DBActivity extends AppCompatActivity {
 
         cursor.close();
         db.close();
+    }
+
+    protected boolean checkIfEditTextContolsAreEmpty(EditText... editTexts){
+        for (EditText et : editTexts ) {
+            if (et.getText().toString().equals("")){
+                Toast.makeText(
+                        getApplicationContext(),
+                        "There is an empty field!",
+                        Toast.LENGTH_LONG
+                ).show();
+
+                return true;
+            }
+        }
+
+        return false;
     }
 }

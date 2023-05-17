@@ -7,17 +7,18 @@
     tools:context=".NoteInsertActivity">
 
     <TextView
-        android:id="@+id/textViewHeading"
+        android:id="@+id/textViewHeadingEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Note:"
+        android:text="Edit Note:"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextTitleEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.060000002" />
 
     <TextView
         android:id="@+id/textViewTitleLabel"
@@ -37,9 +38,8 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/editTextContentEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeading" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeadingEdit" />
 
     <TextView
         android:id="@+id/textViewContentLabel"
@@ -60,7 +60,6 @@
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/btnEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitleEdit" />
 
@@ -71,7 +70,16 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextContentEdit" />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toEndOf="@+id/btnEdit"
+        app:layout_constraintStart_toStartOf="@+id/btnEdit"
+        app:layout_constraintTop_toBottomOf="@+id/btnEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
