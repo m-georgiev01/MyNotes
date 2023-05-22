@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">MyNotes</string>
+    <string-array name="translate_lang">
+        <item>Spanish</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Italian</item>
+        <item>English</item>
+        <item>Bulgarian</item>
+        <item>Chinese</item>
+        <item>Russian</item>
+        <item>Turkish</item>
+    </string-array>
+    <string name="date">Created on: </string>
 </resources>

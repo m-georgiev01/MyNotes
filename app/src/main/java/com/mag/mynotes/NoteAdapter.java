@@ -41,7 +41,7 @@ public class NoteAdapter extends ArrayAdapter<Note> {
         textViewId.setText(dataModel.Id);
         textViewTitle.setText(dataModel.Title);
         textViewContent.setText(dataModel.Content);
-        textViewDate.setText(dataModel.Date);
+        textViewDate.setText("Created on: " + dataModel.Date);
 
         return currentItemView;
     }

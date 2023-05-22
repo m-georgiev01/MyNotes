@@ -27,6 +27,11 @@ public class NoteInsertActivity extends DBActivity {
         btnSave.setOnClickListener(view -> {
 
             if (checkIfEditTextContolsAreEmpty(editTextTitle, editTextContent)){
+                Toast.makeText(
+                        getApplicationContext(),
+                        "There is an empty field!",
+                        Toast.LENGTH_LONG
+                ).show();
                 return;
             }
 
@@ -36,13 +41,8 @@ public class NoteInsertActivity extends DBActivity {
                         new Object[]{
                                 editTextTitle.getText().toString(),
                                 editTextContent.getText().toString(),
-                                "Created on: " + LocalDate.now().toString()
-                        },
-                        () -> Toast.makeText(
-                                getApplicationContext(),
-                                "Insert ok",
-                                Toast.LENGTH_LONG
-                        ).show()
+                                LocalDate.now().toString()
+                        }
                 );
 
                 Intent intent = new Intent(NoteInsertActivity.this, MainActivity.class);

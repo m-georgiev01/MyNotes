@@ -13,8 +13,7 @@ import com.mag.mynotes.Model.Note;
 public class DBActivity extends AppCompatActivity {
     protected void execSQL(
             String sql,
-            Object[] args,
-            OnQuerySuccess success) throws Exception {
+            Object[] args) throws Exception {
 
         SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(
                 getFilesDir().getPath() +
@@ -29,7 +28,6 @@ public class DBActivity extends AppCompatActivity {
         }
 
         db.close();
-        success.OnSuccess();
     }
 
     protected void initDb() throws Exception {
@@ -40,11 +38,7 @@ public class DBActivity extends AppCompatActivity {
                         "Content TEXT NOT NULL, " +
                         "Date TEXT NOT NULL" +
                         "); ",
-                null,
-                () -> Toast.makeText(getApplicationContext(),
-                        "DB INIT SUCCESS",
-                        Toast.LENGTH_LONG
-                ).show()
+                null
         );
     }
 
@@ -79,12 +73,6 @@ public class DBActivity extends AppCompatActivity {
     protected boolean checkIfEditTextContolsAreEmpty(EditText... editTexts){
         for (EditText et : editTexts ) {
             if (et.getText().toString().equals("")){
-                Toast.makeText(
-                        getApplicationContext(),
-                        "There is an empty field!",
-                        Toast.LENGTH_LONG
-                ).show();
-
                 return true;
             }
         }
